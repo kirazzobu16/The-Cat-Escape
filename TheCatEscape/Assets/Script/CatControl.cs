@@ -4,63 +4,42 @@ using UnityEngine;
 
 public class CatControl : MonoBehaviour
 {
+    Rigidbody rb;
+    public Movement movement;
+    public Rotate rotate;
+    public VariableJoystick variableJoystick;
     public GameObject karakter;
     public float Speed;
     public bool up=false;
     public bool left = false;
     public bool right = false;
     public bool down = false;
-    //public enum Direction {Left,Right,Up,Down};
-    // Start is called before the first frame update
+    public Vector2 direction;
+    public SpriteRenderer spriteRenderer;
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-     void Update()
-    {
-        //karakter.transform.position += new Vector3(1,0)*Speed;
-        
-    }
+    // void Update()
+    //{
+    //    //karakter.transform.position += new Vector3(1,0)*Speed;
 
-    // Update is called once per frame
-    private void FixedUpdate()
+    //    direction = variableJoystick.Direction;
+    //}
+    public void MoveWithJoystick()
     {
-        Move();
-    }
-    /// <summary>
-    /// karakter hareketi
-    /// </summary>
-    private void Move()
-    {
-        if (Input.GetKeyDown("a") || left == true)
-        {
-            karakter.transform.position += new Vector3(-1, 0) * Speed;
-            left = true;
-        }
-        if (Input.GetKeyDown("d") || right == true)
-        {
-            karakter.transform.position += new Vector3(1, 0) * Speed;
-            right = true;
-        }
-        if (Input.GetKeyDown("w") || up == true)
-        {
-            karakter.transform.position += new Vector3(0, 1) * Speed;
-            up = true;
-        }
-        if (Input.GetKeyDown("s") || down == true)
-        {
-            karakter.transform.position += new Vector3(0, -1) * Speed;
-            down = true;
-        }
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+ /// <summary>
+ /// K
+ /// </summary>
+ /// <param name="sprite"></param>
+    public void ChangeSprite(Sprite sprite)
     {
-        up = false;
-     left = false;
-     right = false;
-     down = false;
-}
+        if (sprite == null||GameManager.Instance.isMoving)
+            return;
+        spriteRenderer.sprite = sprite;
+    }
 
 }
 
