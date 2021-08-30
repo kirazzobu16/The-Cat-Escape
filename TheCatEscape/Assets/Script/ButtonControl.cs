@@ -29,7 +29,7 @@ public class ButtonControl : MonoBehaviour
                 GameManager.Instance.isMoving =isMoving;
             return;
         }
-        isMoving = true;
+        
         GameManager.Instance.isMoving = isMoving;
         Shot();
     }
